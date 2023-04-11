@@ -9,8 +9,8 @@ import java.time.LocalTime;
 
 
 
-// line 52 "model.ump"
-// line 142 "model.ump"
+// line 55 "model.ump"
+// line 143 "model.ump"
 public class ShiftRequest extends Post
 {
 
@@ -30,9 +30,9 @@ public class ShiftRequest extends Post
   // CONSTRUCTOR
   //------------------------
 
-  public ShiftRequest(LocalDateTime aDate, String aDescription, String aMedia, LocalDate aShiftDate, LocalTime aStartTime, LocalTime aEndTime, Role aRole)
+  public ShiftRequest(LocalDateTime aDate, int aPostID, LocalDate aShiftDate, LocalTime aStartTime, LocalTime aEndTime, Role aRole)
   {
-    super(aDate, aDescription, aMedia);
+    super(aDate, aPostID);
     shiftDate = aShiftDate;
     startTime = aStartTime;
     endTime = aEndTime;

@@ -6,10 +6,9 @@ import java.time.LocalDateTime;
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 
-
 // line 19 "model.ump"
-// line 112 "model.ump"
-public class Post
+// line 117 "model.ump"
+public abstract class Post
 {
 
   //------------------------
@@ -18,18 +17,16 @@ public class Post
 
   //Post Attributes
   private LocalDateTime date;
-  private String description;
-  private String media;
+  private int postID;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Post(LocalDateTime aDate, String aDescription, String aMedia)
+  public Post(LocalDateTime aDate, int aPostID)
   {
     date = aDate;
-    description = aDescription;
-    media = aMedia;
+    postID = aPostID;
   }
 
   //------------------------
@@ -44,18 +41,10 @@ public class Post
     return wasSet;
   }
 
-  public boolean setDescription(String aDescription)
+  public boolean setPostID(int aPostID)
   {
     boolean wasSet = false;
-    description = aDescription;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setMedia(String aMedia)
-  {
-    boolean wasSet = false;
-    media = aMedia;
+    postID = aPostID;
     wasSet = true;
     return wasSet;
   }
@@ -65,14 +54,9 @@ public class Post
     return date;
   }
 
-  public String getDescription()
+  public int getPostID()
   {
-    return description;
-  }
-
-  public String getMedia()
-  {
-    return media;
+    return postID;
   }
 
   public void delete()
@@ -82,8 +66,7 @@ public class Post
   public String toString()
   {
     return super.toString() + "["+
-            "description" + ":" + getDescription()+ "," +
-            "media" + ":" + getMedia()+ "]" + System.getProperties().getProperty("line.separator") +
+            "postID" + ":" + getPostID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null");
   }
 }

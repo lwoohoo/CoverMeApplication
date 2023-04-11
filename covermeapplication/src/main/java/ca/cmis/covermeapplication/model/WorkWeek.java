@@ -1,37 +1,41 @@
 package ca.cmis.covermeapplication.model;
 
-import java.time.LocalDate;
-
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 
+import java.time.LocalDate;
+import java.util.*;
 
-// line 72 "model.ump"
-public class WorkWeek
+// line 75 "model.ump"
+// line 158 "model.ump"
+public class Workweek
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //WorkWeek Attributes
+  //Workweek Attributes
   private LocalDate startDate;
+  private int workweekID;
 
-  //WorkWeek Associations
-  private WorkDay workDay;
+  //Workweek Associations
+  private List<Workday> workdaies;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public WorkWeek(LocalDate aStartDate, WorkDay aWorkDay)
+  public Workweek(LocalDate aStartDate, int aWorkweekID, Workday... allWorkdaies)
   {
     startDate = aStartDate;
-    boolean didAddWorkDay = setWorkDay(aWorkDay);
-    if (!didAddWorkDay)
+    workweekID = aWorkweekID;
+    workdaies = new ArrayList<Workday>();
+    boolean didAddWorkdaies = setWorkdaies(allWorkdaies);
+    if (!didAddWorkdaies)
     {
-      throw new RuntimeException("Unable to create workWeek due to workDay. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create Workweek, must have 7 workdaies. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -47,62 +51,103 @@ public class WorkWeek
     return wasSet;
   }
 
+  public boolean setWorkweekID(int aWorkweekID)
+  {
+    boolean wasSet = false;
+    workweekID = aWorkweekID;
+    wasSet = true;
+    return wasSet;
+  }
+
   public LocalDate getStartDate()
   {
     return startDate;
   }
-  /* Code from template association_GetOne */
-  public WorkDay getWorkDay()
+
+  public int getWorkweekID()
   {
-    return workDay;
+    return workweekID;
   }
-  /* Code from template association_SetOneToAtMostN */
-  public boolean setWorkDay(WorkDay aWorkDay)
+  /* Code from template association_GetMany */
+  public Workday getWorkday(int index)
+  {
+    Workday aWorkday = workdaies.get(index);
+    return aWorkday;
+  }
+
+  public List<Workday> getWorkdaies()
+  {
+    List<Workday> newWorkdaies = Collections.unmodifiableList(workdaies);
+    return newWorkdaies;
+  }
+
+  public int numberOfWorkdaies()
+  {
+    int number = workdaies.size();
+    return number;
+  }
+
+  public boolean hasWorkdaies()
+  {
+    boolean has = workdaies.size() > 0;
+    return has;
+  }
+
+  public int indexOfWorkday(Workday aWorkday)
+  {
+    int index = workdaies.indexOf(aWorkday);
+    return index;
+  }
+  /* Code from template association_RequiredNumberOfMethod */
+  public static int requiredNumberOfWorkdaies()
+  {
+    return 7;
+  }
+  /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfWorkdaies()
+  {
+    return 7;
+  }
+  /* Code from template association_MaximumNumberOfMethod */
+  public static int maximumNumberOfWorkdaies()
+  {
+    return 7;
+  }
+  /* Code from template association_SetUnidirectionalN */
+  public boolean setWorkdaies(Workday... newWorkdaies)
   {
     boolean wasSet = false;
-    //Must provide workDay to workWeek
-    if (aWorkDay == null)
+    ArrayList<Workday> verifiedWorkdaies = new ArrayList<Workday>();
+    for (Workday aWorkday : newWorkdaies)
+    {
+      if (verifiedWorkdaies.contains(aWorkday))
+      {
+        continue;
+      }
+      verifiedWorkdaies.add(aWorkday);
+    }
+
+    if (verifiedWorkdaies.size() != newWorkdaies.length || verifiedWorkdaies.size() != requiredNumberOfWorkdaies())
     {
       return wasSet;
     }
 
-    //workDay already at maximum (7)
-    if (aWorkDay.numberOfWorkWeeks() >= WorkDay.maximumNumberOfWorkWeeks())
-    {
-      return wasSet;
-    }
-    
-    WorkDay existingWorkDay = workDay;
-    workDay = aWorkDay;
-    if (existingWorkDay != null && !existingWorkDay.equals(aWorkDay))
-    {
-      boolean didRemove = existingWorkDay.removeWorkWeek(this);
-      if (!didRemove)
-      {
-        workDay = existingWorkDay;
-        return wasSet;
-      }
-    }
-    workDay.addWorkWeek(this);
+    workdaies.clear();
+    workdaies.addAll(verifiedWorkdaies);
     wasSet = true;
     return wasSet;
   }
 
   public void delete()
   {
-    WorkDay placeholderWorkDay = workDay;
-    this.workDay = null;
-    if(placeholderWorkDay != null)
-    {
-      placeholderWorkDay.removeWorkWeek(this);
-    }
+    workdaies.clear();
   }
 
 
   public String toString()
   {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "startDate" + "=" + (getStartDate() != null ? !getStartDate().equals(this)  ? getStartDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "workDay = "+(getWorkDay()!=null?Integer.toHexString(System.identityHashCode(getWorkDay())):"null");
+    return super.toString() + "["+
+            "workweekID" + ":" + getWorkweekID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "startDate" + "=" + (getStartDate() != null ? !getStartDate().equals(this)  ? getStartDate().toString().replaceAll("  ","    ") : "this" : "null");
   }
 }

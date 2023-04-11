@@ -8,8 +8,8 @@ import java.time.LocalTime;
 
 
 
-// line 60 "model.ump"
-// line 147 "model.ump"
+// line 63 "model.ump"
+// line 148 "model.ump"
 public class Availability extends Event
 {
 
@@ -30,9 +30,9 @@ public class Availability extends Event
   // CONSTRUCTOR
   //------------------------
 
-  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, AvailabilityStatus aAvailabilityStatus)
+  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, AvailabilityStatus aAvailabilityStatus)
   {
-    super(aDate, aStartTime, aEndTime);
+    super(aDate, aStartTime, aEndTime, aEventID);
     availabilityStatus = aAvailabilityStatus;
   }
 

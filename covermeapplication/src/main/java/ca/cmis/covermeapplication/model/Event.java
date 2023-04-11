@@ -9,7 +9,7 @@ import java.time.LocalTime;
 
 
 // line 33 "model.ump"
-// line 123 "model.ump"
+// line 128 "model.ump"
 public abstract class Event
 {
 
@@ -21,16 +21,18 @@ public abstract class Event
   private LocalDate date;
   private LocalTime startTime;
   private LocalTime endTime;
+  private int eventID;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime)
+  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID)
   {
     date = aDate;
     startTime = aStartTime;
     endTime = aEndTime;
+    eventID = aEventID;
   }
 
   //------------------------
@@ -61,6 +63,14 @@ public abstract class Event
     return wasSet;
   }
 
+  public boolean setEventID(int aEventID)
+  {
+    boolean wasSet = false;
+    eventID = aEventID;
+    wasSet = true;
+    return wasSet;
+  }
+
   public LocalDate getDate()
   {
     return date;
@@ -76,13 +86,19 @@ public abstract class Event
     return endTime;
   }
 
+  public int getEventID()
+  {
+    return eventID;
+  }
+
   public void delete()
   {}
 
 
   public String toString()
   {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+    return super.toString() + "["+
+            "eventID" + ":" + getEventID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null");

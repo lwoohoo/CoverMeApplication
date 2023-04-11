@@ -1,33 +1,34 @@
 package ca.cmis.covermeapplication.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 
 
-// line 69 "model.ump"
-// line 153 "model.ump"
-public class CalendarEvent extends Event
+// line 96 "model.ump"
+// line 174 "model.ump"
+public class TimelinePost extends Post
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //CalendarEvent Attributes
+  //TimelinePost Attributes
   private String description;
+  private String media;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, String aDescription)
+  public TimelinePost(LocalDateTime aDate, int aPostID, String aDescription, String aMedia)
   {
-    super(aDate, aStartTime, aEndTime, aEventID);
+    super(aDate, aPostID);
     description = aDescription;
+    media = aMedia;
   }
 
   //------------------------
@@ -42,9 +43,22 @@ public class CalendarEvent extends Event
     return wasSet;
   }
 
+  public boolean setMedia(String aMedia)
+  {
+    boolean wasSet = false;
+    media = aMedia;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getDescription()
   {
     return description;
+  }
+
+  public String getMedia()
+  {
+    return media;
   }
 
   public void delete()
@@ -56,6 +70,7 @@ public class CalendarEvent extends Event
   public String toString()
   {
     return super.toString() + "["+
-            "description" + ":" + getDescription()+ "]";
+            "description" + ":" + getDescription()+ "," +
+            "media" + ":" + getMedia()+ "]";
   }
 }

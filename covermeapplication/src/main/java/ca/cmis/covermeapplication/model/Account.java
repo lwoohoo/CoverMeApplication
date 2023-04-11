@@ -6,11 +6,8 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 // line 2 "model.ump"
-// line 99 "model.ump"
+// line 108 "model.ump"
 public class Account
 {
 
@@ -24,8 +21,6 @@ public class Account
   private String phoneNumber;
   private String username;
   private String password;
-  @Id
-  @GeneratedValue
   private int accountID;
   private boolean isAdmin;
 
@@ -152,7 +147,6 @@ public class Account
     return isAdmin;
   }
   /* Code from template association_GetMany */
-  @Many
   public Post getPost(int index)
   {
     Post aPost = posts.get(index);

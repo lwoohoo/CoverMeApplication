@@ -7,7 +7,8 @@ import java.time.LocalTime;
 
 
 
-// line 77 "model.ump"
+// line 81 "model.ump"
+// line 163 "model.ump"
 public class Shift
 {
 
@@ -18,6 +19,7 @@ public class Shift
   //Shift Attributes
   private LocalTime startTime;
   private LocalTime endTime;
+  private int shiftID;
 
   //Shift Associations
   private Account account;
@@ -26,10 +28,11 @@ public class Shift
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(LocalTime aStartTime, LocalTime aEndTime, Account aAccount)
+  public Shift(LocalTime aStartTime, LocalTime aEndTime, int aShiftID, Account aAccount)
   {
     startTime = aStartTime;
     endTime = aEndTime;
+    shiftID = aShiftID;
     if (!setAccount(aAccount))
     {
       throw new RuntimeException("Unable to create Shift due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
@@ -56,6 +59,14 @@ public class Shift
     return wasSet;
   }
 
+  public boolean setShiftID(int aShiftID)
+  {
+    boolean wasSet = false;
+    shiftID = aShiftID;
+    wasSet = true;
+    return wasSet;
+  }
+
   public LocalTime getStartTime()
   {
     return startTime;
@@ -64,6 +75,11 @@ public class Shift
   public LocalTime getEndTime()
   {
     return endTime;
+  }
+
+  public int getShiftID()
+  {
+    return shiftID;
   }
   /* Code from template association_GetOne */
   public Account getAccount()
@@ -90,7 +106,8 @@ public class Shift
 
   public String toString()
   {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+    return super.toString() + "["+
+            "shiftID" + ":" + getShiftID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");

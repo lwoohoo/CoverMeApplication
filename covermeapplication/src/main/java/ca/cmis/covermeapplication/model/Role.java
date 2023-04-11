@@ -6,7 +6,7 @@ package ca.cmis.covermeapplication.model;
 
 
 // line 26 "model.ump"
-// line 117 "model.ump"
+// line 122 "model.ump"
 public class Role
 {
 

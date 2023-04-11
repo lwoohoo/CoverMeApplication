@@ -17,9 +17,9 @@ class Account
 
 class Post
 {
+  abstract;
   LocalDateTime date;
-  description;
-  media;
+  int postID;
 }
 
 class Role
@@ -35,17 +35,20 @@ class Event
   LocalDate date;
   LocalTime startTime;
   LocalTime endTime;
+  int eventID;
 }
 
 class Calendar
 {
+  int calendarID;
   1 <- 1 Group;
   1 -> * Event;
 }
 
 class Group
 {
-  1 -> * WorkWeek;
+  int groupID;
+  1 -> * Workweek;
 }
 
 class ShiftRequest
@@ -68,110 +71,33 @@ class CalendarEvent
   isA Event;
 }
 
-class WorkWeek
+class Workweek
 {
   LocalDate startDate;
+  int workweekID;
 }
 
 class Shift
 {
   LocalTime startTime;
   LocalTime endTime;
-  * <- 1 WorkDay;
+  int shiftID;
+  * <- 1 Workday;
 }
 
-class WorkDay
+class Workday
 {
   LocalDate date;
-  1 -- 7 WorkWeek;
+  int workdayID;
+  7 <- 1 Workweek;
 }
 
-enum AvailabilityStatus {AVAILABLE, NOT_SPECIFIED, UNAVAILABLE}class Account
+class TimelinePost
 {
-  name;
-  email;
-  phoneNumber;
-  username;
-  password;
-  int accountID;
-  boolean isAdmin;
-  1 -> * Post;
-  1 -> * Role;
-  * <- 1 Group;
-  1 -> * Event;
-  1 -> 1 Calendar;
-  1 <- 1 Shift;
-}
-
-class Post
-{
-  LocalDateTime date;
   description;
   media;
-}
-
-class Role
-{
-  name;
-  int roleID;
-  1 <- 1 ShiftRequest;
-}
-
-class Event
-{
-  abstract;
-  LocalDate date;
-  LocalTime startTime;
-  LocalTime endTime;
-}
-
-class Calendar
-{
-  1 <- 1 Group;
-  1 -> * Event;
-}
-
-class Group
-{
-  1 -> * WorkWeek;
-}
-
-class ShiftRequest
-{
-  LocalDate shiftDate;
-  LocalTime startTime;
-  LocalTime endTime;
   isA Post;
-}
-
-class Availability
-{
-  AvailabilityStatus availabilityStatus;
-  isA Event;
-}
-
-class CalendarEvent
-{
-  description;
-  isA Event;
-}
-
-class WorkWeek
-{
-  LocalDate startDate;
-}
-
-class Shift
-{
-  LocalTime startTime;
-  LocalTime endTime;
-  * <- 1 WorkDay;
-}
-
-class WorkDay
-{
-  LocalDate date;
-  1 -- 7 WorkWeek;
 }
 
 enum AvailabilityStatus {AVAILABLE, NOT_SPECIFIED, UNAVAILABLE}
+

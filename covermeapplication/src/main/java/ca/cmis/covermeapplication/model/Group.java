@@ -6,8 +6,8 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
-// line 47 "model.ump"
-// line 136 "model.ump"
+// line 49 "model.ump"
+// line 138 "model.ump"
 public class Group
 {
 
@@ -15,8 +15,11 @@ public class Group
   // MEMBER VARIABLES
   //------------------------
 
+  //Group Attributes
+  private int groupID;
+
   //Group Associations
-  private List<WorkWeek> workWeeks;
+  private List<Workweek> workweeks;
   private List<Account> accounts;
   private Calendar calendar;
 
@@ -24,9 +27,10 @@ public class Group
   // CONSTRUCTOR
   //------------------------
 
-  public Group(Calendar aCalendar)
+  public Group(int aGroupID, Calendar aCalendar)
   {
-    workWeeks = new ArrayList<WorkWeek>();
+    groupID = aGroupID;
+    workweeks = new ArrayList<Workweek>();
     accounts = new ArrayList<Account>();
     if (!setCalendar(aCalendar))
     {
@@ -37,34 +41,47 @@ public class Group
   //------------------------
   // INTERFACE
   //------------------------
+
+  public boolean setGroupID(int aGroupID)
+  {
+    boolean wasSet = false;
+    groupID = aGroupID;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public int getGroupID()
+  {
+    return groupID;
+  }
   /* Code from template association_GetMany */
-  public WorkWeek getWorkWeek(int index)
+  public Workweek getWorkweek(int index)
   {
-    WorkWeek aWorkWeek = workWeeks.get(index);
-    return aWorkWeek;
+    Workweek aWorkweek = workweeks.get(index);
+    return aWorkweek;
   }
 
-  public List<WorkWeek> getWorkWeeks()
+  public List<Workweek> getWorkweeks()
   {
-    List<WorkWeek> newWorkWeeks = Collections.unmodifiableList(workWeeks);
-    return newWorkWeeks;
+    List<Workweek> newWorkweeks = Collections.unmodifiableList(workweeks);
+    return newWorkweeks;
   }
 
-  public int numberOfWorkWeeks()
+  public int numberOfWorkweeks()
   {
-    int number = workWeeks.size();
+    int number = workweeks.size();
     return number;
   }
 
-  public boolean hasWorkWeeks()
+  public boolean hasWorkweeks()
   {
-    boolean has = workWeeks.size() > 0;
+    boolean has = workweeks.size() > 0;
     return has;
   }
 
-  public int indexOfWorkWeek(WorkWeek aWorkWeek)
+  public int indexOfWorkweek(Workweek aWorkweek)
   {
-    int index = workWeeks.indexOf(aWorkWeek);
+    int index = workweeks.indexOf(aWorkweek);
     return index;
   }
   /* Code from template association_GetMany */
@@ -103,59 +120,59 @@ public class Group
     return calendar;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfWorkWeeks()
+  public static int minimumNumberOfWorkweeks()
   {
     return 0;
   }
   /* Code from template association_AddUnidirectionalMany */
-  public boolean addWorkWeek(WorkWeek aWorkWeek)
+  public boolean addWorkweek(Workweek aWorkweek)
   {
     boolean wasAdded = false;
-    if (workWeeks.contains(aWorkWeek)) { return false; }
-    workWeeks.add(aWorkWeek);
+    if (workweeks.contains(aWorkweek)) { return false; }
+    workweeks.add(aWorkweek);
     wasAdded = true;
     return wasAdded;
   }
 
-  public boolean removeWorkWeek(WorkWeek aWorkWeek)
+  public boolean removeWorkweek(Workweek aWorkweek)
   {
     boolean wasRemoved = false;
-    if (workWeeks.contains(aWorkWeek))
+    if (workweeks.contains(aWorkweek))
     {
-      workWeeks.remove(aWorkWeek);
+      workweeks.remove(aWorkweek);
       wasRemoved = true;
     }
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addWorkWeekAt(WorkWeek aWorkWeek, int index)
+  public boolean addWorkweekAt(Workweek aWorkweek, int index)
   {  
     boolean wasAdded = false;
-    if(addWorkWeek(aWorkWeek))
+    if(addWorkweek(aWorkweek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfWorkWeeks()) { index = numberOfWorkWeeks() - 1; }
-      workWeeks.remove(aWorkWeek);
-      workWeeks.add(index, aWorkWeek);
+      if(index > numberOfWorkweeks()) { index = numberOfWorkweeks() - 1; }
+      workweeks.remove(aWorkweek);
+      workweeks.add(index, aWorkweek);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveWorkWeekAt(WorkWeek aWorkWeek, int index)
+  public boolean addOrMoveWorkweekAt(Workweek aWorkweek, int index)
   {
     boolean wasAdded = false;
-    if(workWeeks.contains(aWorkWeek))
+    if(workweeks.contains(aWorkweek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfWorkWeeks()) { index = numberOfWorkWeeks() - 1; }
-      workWeeks.remove(aWorkWeek);
-      workWeeks.add(index, aWorkWeek);
+      if(index > numberOfWorkweeks()) { index = numberOfWorkweeks() - 1; }
+      workweeks.remove(aWorkweek);
+      workweeks.add(index, aWorkweek);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addWorkWeekAt(aWorkWeek, index);
+      wasAdded = addWorkweekAt(aWorkweek, index);
     }
     return wasAdded;
   }
@@ -230,9 +247,16 @@ public class Group
 
   public void delete()
   {
-    workWeeks.clear();
+    workweeks.clear();
     accounts.clear();
     calendar = null;
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+
+            "groupID" + ":" + getGroupID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "calendar = "+(getCalendar()!=null?Integer.toHexString(System.identityHashCode(getCalendar())):"null");
+  }
 }

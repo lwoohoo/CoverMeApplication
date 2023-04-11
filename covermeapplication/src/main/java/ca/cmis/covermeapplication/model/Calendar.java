@@ -3,17 +3,19 @@ package ca.cmis.covermeapplication.model;
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
-
 import java.util.*;
 
-// line 41 "model.ump"
-// line 128 "model.ump"
+// line 42 "model.ump"
+// line 133 "model.ump"
 public class Calendar
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
+
+  //Calendar Attributes
+  private int calendarID;
 
   //Calendar Associations
   private List<Event> events;
@@ -22,14 +24,28 @@ public class Calendar
   // CONSTRUCTOR
   //------------------------
 
-  public Calendar()
+  public Calendar(int aCalendarID)
   {
+    calendarID = aCalendarID;
     events = new ArrayList<Event>();
   }
 
   //------------------------
   // INTERFACE
   //------------------------
+
+  public boolean setCalendarID(int aCalendarID)
+  {
+    boolean wasSet = false;
+    calendarID = aCalendarID;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public int getCalendarID()
+  {
+    return calendarID;
+  }
   /* Code from template association_GetMany */
   public Event getEvent(int index)
   {
@@ -123,4 +139,10 @@ public class Calendar
     events.clear();
   }
 
+
+  public String toString()
+  {
+    return super.toString() + "["+
+            "calendarID" + ":" + getCalendarID()+ "]";
+  }
 }
