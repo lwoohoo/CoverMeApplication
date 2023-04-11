@@ -1,17 +1,14 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
 
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
-
-
-// line 69 "model.ump"
-// line 153 "model.ump"
+// line 70 "model.ump"
+// line 151 "model.ump"
 @Entity
 public class CalendarEvent extends Event
 {
@@ -27,9 +24,9 @@ public class CalendarEvent extends Event
   // CONSTRUCTOR
   //------------------------
 
-  public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, String aDescription)
+  public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, String aDescription)
   {
-    super(aDate, aStartTime, aEndTime, aEventID);
+    super(aDate, aStartTime, aEndTime, aEventID, aAccount, aCalendar);
     description = aDescription;
   }
 

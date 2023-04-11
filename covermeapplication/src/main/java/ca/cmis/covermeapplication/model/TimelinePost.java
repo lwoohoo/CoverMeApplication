@@ -1,16 +1,13 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
-
-
-// line 96 "model.ump"
-// line 174 "model.ump"
+// line 97 "model.ump"
+// line 172 "model.ump"
 @Entity
 public class TimelinePost extends Post
 {
@@ -27,9 +24,9 @@ public class TimelinePost extends Post
   // CONSTRUCTOR
   //------------------------
 
-  public TimelinePost(LocalDateTime aDate, int aPostID, String aDescription, String aMedia)
+  public TimelinePost(LocalDateTime aDate, int aPostID, Account aAccount, String aDescription, String aMedia)
   {
-    super(aDate, aPostID);
+    super(aDate, aPostID, aAccount);
     description = aDescription;
     media = aMedia;
   }

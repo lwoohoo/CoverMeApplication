@@ -1,19 +1,18 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
-
-
-// line 81 "model.ump"
-// line 163 "model.ump"
+// line 82 "model.ump"
+// line 161 "model.ump"
 @Entity
 public class Shift
 {
@@ -30,6 +29,8 @@ public class Shift
   private int shiftID;
 
   //Shift Associations
+  @ManyToOne
+  private Workday workday;
   @OneToOne
   private Account account;
 
@@ -37,11 +38,15 @@ public class Shift
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(LocalTime aStartTime, LocalTime aEndTime, int aShiftID, Account aAccount)
+  public Shift(LocalTime aStartTime, LocalTime aEndTime, int aShiftID, Workday aWorkday, Account aAccount)
   {
     startTime = aStartTime;
     endTime = aEndTime;
     shiftID = aShiftID;
+    if (!setWorkday(aWorkday))
+    {
+      throw new RuntimeException("Unable to create Shift due to aWorkday. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
     if (!setAccount(aAccount))
     {
       throw new RuntimeException("Unable to create Shift due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
@@ -91,9 +96,25 @@ public class Shift
     return shiftID;
   }
   /* Code from template association_GetOne */
+  public Workday getWorkday()
+  {
+    return workday;
+  }
+  /* Code from template association_GetOne */
   public Account getAccount()
   {
     return account;
+  }
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setWorkday(Workday aNewWorkday)
+  {
+    boolean wasSet = false;
+    if (aNewWorkday != null)
+    {
+      workday = aNewWorkday;
+      wasSet = true;
+    }
+    return wasSet;
   }
   /* Code from template association_SetUnidirectionalOne */
   public boolean setAccount(Account aNewAccount)
@@ -109,6 +130,7 @@ public class Shift
 
   public void delete()
   {
+    workday = null;
     account = null;
   }
 
@@ -119,6 +141,7 @@ public class Shift
             "shiftID" + ":" + getShiftID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "workday = "+(getWorkday()!=null?Integer.toHexString(System.identityHashCode(getWorkday())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
   }
 }

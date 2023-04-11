@@ -1,5 +1,4 @@
 package ca.cmis.covermeapplication.model;
-
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -9,11 +8,11 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 // line 2 "model.ump"
-// line 108 "model.ump"
+// line 111 "model.ump"
 @Entity
 public class Account
 {
@@ -34,35 +33,30 @@ public class Account
   private boolean isAdmin;
 
   //Account Associations
-  @OneToMany
-  private List<Post> posts;
-  @OneToMany
+  @ManyToMany
   private List<Role> roles;
-  @OneToMany
-  private List<Event> events;
-  @OneToOne
-  private Calendar calendar;
+  @ManyToOne
+  private Team team;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Account(String aName, String aEmail, String aPhoneNumber, String aUsername, String aPassword, int aAccountID, boolean aIsAdmin, Calendar aCalendar)
+  public Account(){}
+
+  public Account(String aName, String aEmail, String aPhoneNumber, String aUsername, String aPassword, boolean aIsAdmin)
   {
     name = aName;
     email = aEmail;
     phoneNumber = aPhoneNumber;
     username = aUsername;
     password = aPassword;
-    accountID = aAccountID;
     isAdmin = aIsAdmin;
-    posts = new ArrayList<Post>();
     roles = new ArrayList<Role>();
-    events = new ArrayList<Event>();
-    if (!setCalendar(aCalendar))
-    {
-      throw new RuntimeException("Unable to create Account due to aCalendar. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
+    // if (!setTeam(aTeam))
+    // {
+    //   throw new RuntimeException("Unable to create Account due to aTeam. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    // }
   }
 
   //------------------------
@@ -160,36 +154,6 @@ public class Account
     return isAdmin;
   }
   /* Code from template association_GetMany */
-  public Post getPost(int index)
-  {
-    Post aPost = posts.get(index);
-    return aPost;
-  }
-
-  public List<Post> getPosts()
-  {
-    List<Post> newPosts = Collections.unmodifiableList(posts);
-    return newPosts;
-  }
-
-  public int numberOfPosts()
-  {
-    int number = posts.size();
-    return number;
-  }
-
-  public boolean hasPosts()
-  {
-    boolean has = posts.size() > 0;
-    return has;
-  }
-
-  public int indexOfPost(Post aPost)
-  {
-    int index = posts.indexOf(aPost);
-    return index;
-  }
-  /* Code from template association_GetMany */
   public Role getRole(int index)
   {
     Role aRole = roles.get(index);
@@ -219,97 +183,10 @@ public class Account
     int index = roles.indexOf(aRole);
     return index;
   }
-  /* Code from template association_GetMany */
-  public Event getEvent(int index)
-  {
-    Event aEvent = events.get(index);
-    return aEvent;
-  }
-
-  public List<Event> getEvents()
-  {
-    List<Event> newEvents = Collections.unmodifiableList(events);
-    return newEvents;
-  }
-
-  public int numberOfEvents()
-  {
-    int number = events.size();
-    return number;
-  }
-
-  public boolean hasEvents()
-  {
-    boolean has = events.size() > 0;
-    return has;
-  }
-
-  public int indexOfEvent(Event aEvent)
-  {
-    int index = events.indexOf(aEvent);
-    return index;
-  }
   /* Code from template association_GetOne */
-  public Calendar getCalendar()
+  public Team getTeam()
   {
-    return calendar;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfPosts()
-  {
-    return 0;
-  }
-  /* Code from template association_AddUnidirectionalMany */
-  public boolean addPost(Post aPost)
-  {
-    boolean wasAdded = false;
-    if (posts.contains(aPost)) { return false; }
-    posts.add(aPost);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removePost(Post aPost)
-  {
-    boolean wasRemoved = false;
-    if (posts.contains(aPost))
-    {
-      posts.remove(aPost);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addPostAt(Post aPost, int index)
-  {  
-    boolean wasAdded = false;
-    if(addPost(aPost))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfPosts()) { index = numberOfPosts() - 1; }
-      posts.remove(aPost);
-      posts.add(index, aPost);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMovePostAt(Post aPost, int index)
-  {
-    boolean wasAdded = false;
-    if(posts.contains(aPost))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfPosts()) { index = numberOfPosts() - 1; }
-      posts.remove(aPost);
-      posts.add(index, aPost);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addPostAt(aPost, index);
-    }
-    return wasAdded;
+    return team;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfRoles()
@@ -368,70 +245,13 @@ public class Account
     }
     return wasAdded;
   }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEvents()
-  {
-    return 0;
-  }
-  /* Code from template association_AddUnidirectionalMany */
-  public boolean addEvent(Event aEvent)
-  {
-    boolean wasAdded = false;
-    if (events.contains(aEvent)) { return false; }
-    events.add(aEvent);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeEvent(Event aEvent)
-  {
-    boolean wasRemoved = false;
-    if (events.contains(aEvent))
-    {
-      events.remove(aEvent);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addEventAt(Event aEvent, int index)
-  {  
-    boolean wasAdded = false;
-    if(addEvent(aEvent))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfEvents()) { index = numberOfEvents() - 1; }
-      events.remove(aEvent);
-      events.add(index, aEvent);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveEventAt(Event aEvent, int index)
-  {
-    boolean wasAdded = false;
-    if(events.contains(aEvent))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfEvents()) { index = numberOfEvents() - 1; }
-      events.remove(aEvent);
-      events.add(index, aEvent);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addEventAt(aEvent, index);
-    }
-    return wasAdded;
-  }
   /* Code from template association_SetUnidirectionalOne */
-  public boolean setCalendar(Calendar aNewCalendar)
+  public boolean setTeam(Team aNewTeam)
   {
     boolean wasSet = false;
-    if (aNewCalendar != null)
+    if (aNewTeam != null)
     {
-      calendar = aNewCalendar;
+      team = aNewTeam;
       wasSet = true;
     }
     return wasSet;
@@ -439,10 +259,8 @@ public class Account
 
   public void delete()
   {
-    posts.clear();
     roles.clear();
-    events.clear();
-    calendar = null;
+    team = null;
   }
 
 
@@ -456,6 +274,6 @@ public class Account
             "password" + ":" + getPassword()+ "," +
             "accountID" + ":" + getAccountID()+ "," +
             "isAdmin" + ":" + getIsAdmin()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "calendar = "+(getCalendar()!=null?Integer.toHexString(System.identityHashCode(getCalendar())):"null");
+            "  " + "team = "+(getTeam()!=null?Integer.toHexString(System.identityHashCode(getTeam())):"null");
   }
 }

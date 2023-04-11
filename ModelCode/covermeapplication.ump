@@ -7,11 +7,11 @@ class Account
   password;
   int accountID;
   boolean isAdmin;
-  1 -> * Post;
+  1 <- * Post;
   1 -> * Role;
-  * <- 1 Group;
-  1 -> * Event;
-  1 -> 1 Calendar;
+  * -> 1 Team;
+  1 <- * Event;
+  1 <- 1 Calendar;
   1 <- 1 Shift;
 }
 
@@ -27,6 +27,7 @@ class Role
   name;
   int roleID;
   1 <- 1 ShiftRequest;
+  * -> 1 Team;
 }
 
 class Event
@@ -41,14 +42,14 @@ class Event
 class Calendar
 {
   int calendarID;
-  1 <- 1 Group;
-  1 -> * Event;
+  1 -> 1 Team;
+  1 <- * Event;
 }
 
-class Group
+class Team
 {
-  int groupID;
-  1 -> * Workweek;
+  int teamID;
+  1 <- * Workweek;
 }
 
 class ShiftRequest
@@ -82,14 +83,14 @@ class Shift
   LocalTime startTime;
   LocalTime endTime;
   int shiftID;
-  * <- 1 Workday;
+  * -> 1 Workday;
 }
 
 class Workday
 {
   LocalDate date;
   int workdayID;
-  7 <- 1 Workweek;
+  7 -> 1 Workweek;
 }
 
 class TimelinePost

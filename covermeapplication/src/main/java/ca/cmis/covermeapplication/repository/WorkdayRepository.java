@@ -14,8 +14,8 @@ public interface WorkdayRepository extends CrudRepository<Workday, Integer>{
     Workday findWorkdayByWorkdayID(int workdayID);
 
     //find by date
-    Workday finWorkdayByDate(LocalDate date);
+    Workday findWorkdayByDate(LocalDate date);
 
-    //find by workweek
-    List<Workday> findWorkdayByWorkweek(Workweek workweek);
+    // //find by workweek
+    // List<Workday> findWorkdayByWorkweek(Workweek workweek);
 }

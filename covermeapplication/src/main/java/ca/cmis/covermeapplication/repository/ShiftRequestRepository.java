@@ -15,6 +15,6 @@ public interface ShiftRequestRepository extends CrudRepository<ShiftRequest, Int
     //find by date
     ShiftRequest findShiftRequestByDate(LocalDate date);
 
-    //find by poster account
-    ShiftRequest findShiftRequestByAccount(Account account);
+    // //find by poster account
+    // ShiftRequest findShiftRequestByAccount(Account account);
 }

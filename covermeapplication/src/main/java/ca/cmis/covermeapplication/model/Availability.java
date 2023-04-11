@@ -1,17 +1,14 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
 
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
-
-
-// line 63 "model.ump"
-// line 148 "model.ump"
+// line 64 "model.ump"
+// line 146 "model.ump"
 @Entity
 public class Availability extends Event
 {
@@ -33,9 +30,9 @@ public class Availability extends Event
   // CONSTRUCTOR
   //------------------------
 
-  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, AvailabilityStatus aAvailabilityStatus)
+  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, AvailabilityStatus aAvailabilityStatus)
   {
-    super(aDate, aStartTime, aEndTime, aEventID);
+    super(aDate, aStartTime, aEndTime, aEventID, aAccount, aCalendar);
     availabilityStatus = aAvailabilityStatus;
   }
 

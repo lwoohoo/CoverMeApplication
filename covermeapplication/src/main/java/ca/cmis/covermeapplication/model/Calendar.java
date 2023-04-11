@@ -1,17 +1,14 @@
 package ca.cmis.covermeapplication.model;
-
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
-import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-// line 42 "model.ump"
-// line 133 "model.ump"
+// line 43 "model.ump"
+// line 136 "model.ump"
 @Entity
 public class Calendar
 {
@@ -26,17 +23,26 @@ public class Calendar
   private int calendarID;
 
   //Calendar Associations
-  @OneToMany
-  private List<Event> events;
+  @OneToOne
+  private Team team;
+  @OneToOne
+  private Account account;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Calendar(int aCalendarID)
+  public Calendar(int aCalendarID, Team aTeam, Account aAccount)
   {
     calendarID = aCalendarID;
-    events = new ArrayList<Event>();
+    if (!setTeam(aTeam))
+    {
+      throw new RuntimeException("Unable to create Calendar due to aTeam. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    if (!setAccount(aAccount))
+    {
+      throw new RuntimeException("Unable to create Calendar due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -55,103 +61,51 @@ public class Calendar
   {
     return calendarID;
   }
-  /* Code from template association_GetMany */
-  public Event getEvent(int index)
+  /* Code from template association_GetOne */
+  public Team getTeam()
   {
-    Event aEvent = events.get(index);
-    return aEvent;
+    return team;
   }
-
-  public List<Event> getEvents()
+  /* Code from template association_GetOne */
+  public Account getAccount()
   {
-    List<Event> newEvents = Collections.unmodifiableList(events);
-    return newEvents;
+    return account;
   }
-
-  public int numberOfEvents()
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setTeam(Team aNewTeam)
   {
-    int number = events.size();
-    return number;
-  }
-
-  public boolean hasEvents()
-  {
-    boolean has = events.size() > 0;
-    return has;
-  }
-
-  public int indexOfEvent(Event aEvent)
-  {
-    int index = events.indexOf(aEvent);
-    return index;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEvents()
-  {
-    return 0;
-  }
-  /* Code from template association_AddUnidirectionalMany */
-  public boolean addEvent(Event aEvent)
-  {
-    boolean wasAdded = false;
-    if (events.contains(aEvent)) { return false; }
-    events.add(aEvent);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeEvent(Event aEvent)
-  {
-    boolean wasRemoved = false;
-    if (events.contains(aEvent))
+    boolean wasSet = false;
+    if (aNewTeam != null)
     {
-      events.remove(aEvent);
-      wasRemoved = true;
+      team = aNewTeam;
+      wasSet = true;
     }
-    return wasRemoved;
+    return wasSet;
   }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addEventAt(Event aEvent, int index)
-  {  
-    boolean wasAdded = false;
-    if(addEvent(aEvent))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfEvents()) { index = numberOfEvents() - 1; }
-      events.remove(aEvent);
-      events.add(index, aEvent);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveEventAt(Event aEvent, int index)
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setAccount(Account aNewAccount)
   {
-    boolean wasAdded = false;
-    if(events.contains(aEvent))
+    boolean wasSet = false;
+    if (aNewAccount != null)
     {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfEvents()) { index = numberOfEvents() - 1; }
-      events.remove(aEvent);
-      events.add(index, aEvent);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addEventAt(aEvent, index);
+      account = aNewAccount;
+      wasSet = true;
     }
-    return wasAdded;
+    return wasSet;
   }
 
   public void delete()
   {
-    events.clear();
+    team = null;
+    account = null;
   }
 
 
   public String toString()
   {
     return super.toString() + "["+
-            "calendarID" + ":" + getCalendarID()+ "]";
+            "calendarID" + ":" + getCalendarID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "team = "+(getTeam()!=null?Integer.toHexString(System.identityHashCode(getTeam())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
   }
 }

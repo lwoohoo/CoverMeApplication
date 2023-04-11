@@ -1,4 +1,6 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,13 +8,9 @@ import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
-
-
-// line 55 "model.ump"
-// line 143 "model.ump"
+// line 56 "model.ump"
+// line 141 "model.ump"
 @Entity
 public class ShiftRequest extends Post
 {
@@ -34,9 +32,9 @@ public class ShiftRequest extends Post
   // CONSTRUCTOR
   //------------------------
 
-  public ShiftRequest(LocalDateTime aDate, int aPostID, LocalDate aShiftDate, LocalTime aStartTime, LocalTime aEndTime, Role aRole)
+  public ShiftRequest(LocalDateTime aDate, int aPostID, Account aAccount, LocalDate aShiftDate, LocalTime aStartTime, LocalTime aEndTime, Role aRole)
   {
-    super(aDate, aPostID);
+    super(aDate, aPostID, aAccount);
     shiftDate = aShiftDate;
     startTime = aStartTime;
     endTime = aEndTime;

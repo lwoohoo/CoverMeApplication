@@ -1,17 +1,16 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
+import javax.persistence.ManyToOne;
 
 // line 19 "model.ump"
-// line 117 "model.ump"
+// line 120 "model.ump"
 @Entity
 public abstract class Post
 {
@@ -26,14 +25,22 @@ public abstract class Post
   @GeneratedValue
   private int postID;
 
+  //Post Associations
+  @ManyToOne
+  private Account account;
+
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Post(LocalDateTime aDate, int aPostID)
+  public Post(LocalDateTime aDate, int aPostID, Account aAccount)
   {
     date = aDate;
     postID = aPostID;
+    if (!setAccount(aAccount))
+    {
+      throw new RuntimeException("Unable to create Post due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -65,15 +72,34 @@ public abstract class Post
   {
     return postID;
   }
+  /* Code from template association_GetOne */
+  public Account getAccount()
+  {
+    return account;
+  }
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setAccount(Account aNewAccount)
+  {
+    boolean wasSet = false;
+    if (aNewAccount != null)
+    {
+      account = aNewAccount;
+      wasSet = true;
+    }
+    return wasSet;
+  }
 
   public void delete()
-  {}
+  {
+    account = null;
+  }
 
 
   public String toString()
   {
     return super.toString() + "["+
             "postID" + ":" + getPostID()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null");
+            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
   }
 }

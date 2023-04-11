@@ -1,4 +1,6 @@
 package ca.cmis.covermeapplication.model;
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,14 +8,11 @@ import java.time.LocalTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
-
-
-
-// line 33 "model.ump"
-// line 128 "model.ump"
+// line 34 "model.ump"
+// line 131 "model.ump"
 @Entity
 public abstract class Event
 {
@@ -30,16 +29,30 @@ public abstract class Event
   @GeneratedValue
   private int eventID;
 
+  //Event Associations
+  @ManyToOne
+  private Account account;
+  @OneToOne
+  private Calendar calendar;
+
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID)
+  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar)
   {
     date = aDate;
     startTime = aStartTime;
     endTime = aEndTime;
     eventID = aEventID;
+    if (!setAccount(aAccount))
+    {
+      throw new RuntimeException("Unable to create Event due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
+    if (!setCalendar(aCalendar))
+    {
+      throw new RuntimeException("Unable to create Event due to aCalendar. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -97,9 +110,44 @@ public abstract class Event
   {
     return eventID;
   }
+  /* Code from template association_GetOne */
+  public Account getAccount()
+  {
+    return account;
+  }
+  /* Code from template association_GetOne */
+  public Calendar getCalendar()
+  {
+    return calendar;
+  }
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setAccount(Account aNewAccount)
+  {
+    boolean wasSet = false;
+    if (aNewAccount != null)
+    {
+      account = aNewAccount;
+      wasSet = true;
+    }
+    return wasSet;
+  }
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setCalendar(Calendar aNewCalendar)
+  {
+    boolean wasSet = false;
+    if (aNewCalendar != null)
+    {
+      calendar = aNewCalendar;
+      wasSet = true;
+    }
+    return wasSet;
+  }
 
   public void delete()
-  {}
+  {
+    account = null;
+    calendar = null;
+  }
 
 
   public String toString()
@@ -108,6 +156,8 @@ public abstract class Event
             "eventID" + ":" + getEventID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "startTime" + "=" + (getStartTime() != null ? !getStartTime().equals(this)  ? getStartTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null");
+            "  " + "endTime" + "=" + (getEndTime() != null ? !getEndTime().equals(this)  ? getEndTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null") + System.getProperties().getProperty("line.separator") +
+            "  " + "calendar = "+(getCalendar()!=null?Integer.toHexString(System.identityHashCode(getCalendar())):"null");
   }
 }

@@ -15,6 +15,6 @@ public interface TimelinePostRepository extends CrudRepository<TimelinePost, Int
     //find by date
     TimelinePost findTimelinePostByDate(LocalDate date);
 
-    //find by account
-    TimelinePost findTimelinePostByAccount(Account account);
+    // //find by account
+    // TimelinePost findTimelinePostByAccount(Account account);
 }

@@ -14,9 +14,7 @@ public interface RoleRepository extends CrudRepository<Role, Integer>{
     //find by role name
     Role findRoleByName(String name);
 
-    //find role by account
-    Role findRoleByAccount(Account account);
+    // //find role by account
+    // Role findRoleByAccount(Account account);
 
-    //find role by shiftrequest
-    Role findRoleByShiftRequest(ShiftRequest shiftRequest);
 }

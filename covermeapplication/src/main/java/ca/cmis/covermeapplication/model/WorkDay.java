@@ -1,20 +1,16 @@
 package ca.cmis.covermeapplication.model;
-
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
-
 import java.time.LocalDate;
-import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
-
-// line 89 "model.ump"
-// line 169 "model.ump"
+// line 90 "model.ump"
+// line 167 "model.ump"
 @Entity
 public class Workday
 {
@@ -30,18 +26,21 @@ public class Workday
   private int workdayID;
 
   //Workday Associations
-  @OneToMany
-  private List<Shift> shifts;
+  @ManyToOne
+  private Workweek workweek;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Workday(LocalDate aDate, int aWorkdayID)
+  public Workday(LocalDate aDate, int aWorkdayID, Workweek aWorkweek)
   {
     date = aDate;
     workdayID = aWorkdayID;
-    shifts = new ArrayList<Shift>();
+    if (!setWorkweek(aWorkweek))
+    {
+      throw new RuntimeException("Unable to create Workday due to aWorkweek. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -73,97 +72,26 @@ public class Workday
   {
     return workdayID;
   }
-  /* Code from template association_GetMany */
-  public Shift getShift(int index)
+  /* Code from template association_GetOne */
+  public Workweek getWorkweek()
   {
-    Shift aShift = shifts.get(index);
-    return aShift;
+    return workweek;
   }
-
-  public List<Shift> getShifts()
+  /* Code from template association_SetUnidirectionalOne */
+  public boolean setWorkweek(Workweek aNewWorkweek)
   {
-    List<Shift> newShifts = Collections.unmodifiableList(shifts);
-    return newShifts;
-  }
-
-  public int numberOfShifts()
-  {
-    int number = shifts.size();
-    return number;
-  }
-
-  public boolean hasShifts()
-  {
-    boolean has = shifts.size() > 0;
-    return has;
-  }
-
-  public int indexOfShift(Shift aShift)
-  {
-    int index = shifts.indexOf(aShift);
-    return index;
-  }
-  /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfShifts()
-  {
-    return 0;
-  }
-  /* Code from template association_AddUnidirectionalMany */
-  public boolean addShift(Shift aShift)
-  {
-    boolean wasAdded = false;
-    if (shifts.contains(aShift)) { return false; }
-    shifts.add(aShift);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeShift(Shift aShift)
-  {
-    boolean wasRemoved = false;
-    if (shifts.contains(aShift))
+    boolean wasSet = false;
+    if (aNewWorkweek != null)
     {
-      shifts.remove(aShift);
-      wasRemoved = true;
+      workweek = aNewWorkweek;
+      wasSet = true;
     }
-    return wasRemoved;
-  }
-  /* Code from template association_AddIndexControlFunctions */
-  public boolean addShiftAt(Shift aShift, int index)
-  {  
-    boolean wasAdded = false;
-    if(addShift(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShifts()) { index = numberOfShifts() - 1; }
-      shifts.remove(aShift);
-      shifts.add(index, aShift);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveShiftAt(Shift aShift, int index)
-  {
-    boolean wasAdded = false;
-    if(shifts.contains(aShift))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfShifts()) { index = numberOfShifts() - 1; }
-      shifts.remove(aShift);
-      shifts.add(index, aShift);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addShiftAt(aShift, index);
-    }
-    return wasAdded;
+    return wasSet;
   }
 
   public void delete()
   {
-    shifts.clear();
+    workweek = null;
   }
 
 
@@ -171,6 +99,7 @@ public class Workday
   {
     return super.toString() + "["+
             "workdayID" + ":" + getWorkdayID()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null");
+            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "workweek = "+(getWorkweek()!=null?Integer.toHexString(System.identityHashCode(getWorkweek())):"null");
   }
 }
