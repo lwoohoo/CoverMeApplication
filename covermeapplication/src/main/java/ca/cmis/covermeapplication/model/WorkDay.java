@@ -7,9 +7,15 @@ package ca.cmis.covermeapplication.model;
 import java.time.LocalDate;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 // line 89 "model.ump"
 // line 169 "model.ump"
+@Entity
 public class Workday
 {
 
@@ -19,9 +25,12 @@ public class Workday
 
   //Workday Attributes
   private LocalDate date;
+  @Id
+  @GeneratedValue
   private int workdayID;
 
   //Workday Associations
+  @OneToMany
   private List<Shift> shifts;
 
   //------------------------

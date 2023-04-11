@@ -1,5 +1,9 @@
 package ca.cmis.covermeapplication.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -7,6 +11,7 @@ package ca.cmis.covermeapplication.model;
 
 // line 26 "model.ump"
 // line 122 "model.ump"
+@Entity
 public class Role
 {
 
@@ -16,6 +21,8 @@ public class Role
 
   //Role Attributes
   private String name;
+  @Id
+  @GeneratedValue
   private int roleID;
 
   //------------------------

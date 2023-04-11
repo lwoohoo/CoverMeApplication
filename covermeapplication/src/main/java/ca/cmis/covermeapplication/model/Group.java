@@ -6,8 +6,15 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 // line 49 "model.ump"
 // line 138 "model.ump"
+@Entity
 public class Group
 {
 
@@ -16,11 +23,16 @@ public class Group
   //------------------------
 
   //Group Attributes
+  @Id
+  @GeneratedValue
   private int groupID;
 
   //Group Associations
+  @OneToMany
   private List<Workweek> workweeks;
+  @OneToMany
   private List<Account> accounts;
+  @OneToOne
   private Calendar calendar;
 
   //------------------------

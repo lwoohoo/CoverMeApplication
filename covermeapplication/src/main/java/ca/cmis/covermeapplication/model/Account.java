@@ -6,8 +6,15 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 // line 2 "model.ump"
 // line 108 "model.ump"
+@Entity
 public class Account
 {
 
@@ -21,13 +28,19 @@ public class Account
   private String phoneNumber;
   private String username;
   private String password;
+  @Id
+  @GeneratedValue
   private int accountID;
   private boolean isAdmin;
 
   //Account Associations
+  @OneToMany
   private List<Post> posts;
+  @OneToMany
   private List<Role> roles;
+  @OneToMany
   private List<Event> events;
+  @OneToOne
   private Calendar calendar;
 
   //------------------------

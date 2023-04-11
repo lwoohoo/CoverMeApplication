@@ -3,6 +3,8 @@ package ca.cmis.covermeapplication.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Entity;
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -10,6 +12,7 @@ import java.time.LocalTime;
 
 // line 63 "model.ump"
 // line 148 "model.ump"
+@Entity
 public class Availability extends Event
 {
 

@@ -2,6 +2,8 @@ package ca.cmis.covermeapplication.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 
 // line 96 "model.ump"
 // line 174 "model.ump"
+@Entity
 public class TimelinePost extends Post
 {
 

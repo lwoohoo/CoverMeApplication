@@ -2,6 +2,11 @@ package ca.cmis.covermeapplication.model;
 
 import java.time.LocalTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -9,6 +14,7 @@ import java.time.LocalTime;
 
 // line 81 "model.ump"
 // line 163 "model.ump"
+@Entity
 public class Shift
 {
 
@@ -19,9 +25,12 @@ public class Shift
   //Shift Attributes
   private LocalTime startTime;
   private LocalTime endTime;
+  @Id
+  @GeneratedValue
   private int shiftID;
 
   //Shift Associations
+  @OneToOne
   private Account account;
 
   //------------------------

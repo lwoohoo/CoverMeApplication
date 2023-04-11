@@ -2,12 +2,17 @@ package ca.cmis.covermeapplication.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
 
 // line 19 "model.ump"
 // line 117 "model.ump"
+@Entity
 public abstract class Post
 {
 
@@ -17,6 +22,8 @@ public abstract class Post
 
   //Post Attributes
   private LocalDateTime date;
+  @Id
+  @GeneratedValue
   private int postID;
 
   //------------------------

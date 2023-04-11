@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
@@ -11,6 +13,7 @@ import java.time.LocalTime;
 
 // line 55 "model.ump"
 // line 143 "model.ump"
+@Entity
 public class ShiftRequest extends Post
 {
 
@@ -24,6 +27,7 @@ public class ShiftRequest extends Post
   private LocalTime endTime;
 
   //ShiftRequest Associations
+  @OneToOne
   private Role role;
 
   //------------------------

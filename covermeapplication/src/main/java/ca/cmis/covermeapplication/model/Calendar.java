@@ -5,8 +5,14 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 // line 42 "model.ump"
 // line 133 "model.ump"
+@Entity
 public class Calendar
 {
 
@@ -15,9 +21,12 @@ public class Calendar
   //------------------------
 
   //Calendar Attributes
+  @Id
+  @GeneratedValue
   private int calendarID;
 
   //Calendar Associations
+  @OneToMany
   private List<Event> events;
 
   //------------------------

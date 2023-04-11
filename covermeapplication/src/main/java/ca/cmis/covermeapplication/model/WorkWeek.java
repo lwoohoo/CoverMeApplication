@@ -7,8 +7,14 @@ package ca.cmis.covermeapplication.model;
 import java.time.LocalDate;
 import java.util.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 // line 75 "model.ump"
 // line 158 "model.ump"
+@Entity
 public class Workweek
 {
 
@@ -18,24 +24,27 @@ public class Workweek
 
   //Workweek Attributes
   private LocalDate startDate;
+  @Id
+  @GeneratedValue
   private int workweekID;
 
   //Workweek Associations
-  private List<Workday> workdaies;
+  @OneToMany
+  private List<Workday> workdays;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Workweek(LocalDate aStartDate, int aWorkweekID, Workday... allWorkdaies)
+  public Workweek(LocalDate aStartDate, int aWorkweekID, Workday... allworkdays)
   {
     startDate = aStartDate;
     workweekID = aWorkweekID;
-    workdaies = new ArrayList<Workday>();
-    boolean didAddWorkdaies = setWorkdaies(allWorkdaies);
-    if (!didAddWorkdaies)
+    workdays = new ArrayList<Workday>();
+    boolean didAddworkdays = setworkdays(allworkdays);
+    if (!didAddworkdays)
     {
-      throw new RuntimeException("Unable to create Workweek, must have 7 workdaies. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create Workweek, must have 7 workdays. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -71,76 +80,76 @@ public class Workweek
   /* Code from template association_GetMany */
   public Workday getWorkday(int index)
   {
-    Workday aWorkday = workdaies.get(index);
+    Workday aWorkday = workdays.get(index);
     return aWorkday;
   }
 
-  public List<Workday> getWorkdaies()
+  public List<Workday> getworkdays()
   {
-    List<Workday> newWorkdaies = Collections.unmodifiableList(workdaies);
-    return newWorkdaies;
+    List<Workday> newworkdays = Collections.unmodifiableList(workdays);
+    return newworkdays;
   }
 
-  public int numberOfWorkdaies()
+  public int numberOfworkdays()
   {
-    int number = workdaies.size();
+    int number = workdays.size();
     return number;
   }
 
-  public boolean hasWorkdaies()
+  public boolean hasworkdays()
   {
-    boolean has = workdaies.size() > 0;
+    boolean has = workdays.size() > 0;
     return has;
   }
 
   public int indexOfWorkday(Workday aWorkday)
   {
-    int index = workdaies.indexOf(aWorkday);
+    int index = workdays.indexOf(aWorkday);
     return index;
   }
   /* Code from template association_RequiredNumberOfMethod */
-  public static int requiredNumberOfWorkdaies()
+  public static int requiredNumberOfworkdays()
   {
     return 7;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfWorkdaies()
+  public static int minimumNumberOfworkdays()
   {
     return 7;
   }
   /* Code from template association_MaximumNumberOfMethod */
-  public static int maximumNumberOfWorkdaies()
+  public static int maximumNumberOfworkdays()
   {
     return 7;
   }
   /* Code from template association_SetUnidirectionalN */
-  public boolean setWorkdaies(Workday... newWorkdaies)
+  public boolean setworkdays(Workday... newworkdays)
   {
     boolean wasSet = false;
-    ArrayList<Workday> verifiedWorkdaies = new ArrayList<Workday>();
-    for (Workday aWorkday : newWorkdaies)
+    ArrayList<Workday> verifiedworkdays = new ArrayList<Workday>();
+    for (Workday aWorkday : newworkdays)
     {
-      if (verifiedWorkdaies.contains(aWorkday))
+      if (verifiedworkdays.contains(aWorkday))
       {
         continue;
       }
-      verifiedWorkdaies.add(aWorkday);
+      verifiedworkdays.add(aWorkday);
     }
 
-    if (verifiedWorkdaies.size() != newWorkdaies.length || verifiedWorkdaies.size() != requiredNumberOfWorkdaies())
+    if (verifiedworkdays.size() != newworkdays.length || verifiedworkdays.size() != requiredNumberOfworkdays())
     {
       return wasSet;
     }
 
-    workdaies.clear();
-    workdaies.addAll(verifiedWorkdaies);
+    workdays.clear();
+    workdays.addAll(verifiedworkdays);
     wasSet = true;
     return wasSet;
   }
 
   public void delete()
   {
-    workdaies.clear();
+    workdays.clear();
   }
 
 
