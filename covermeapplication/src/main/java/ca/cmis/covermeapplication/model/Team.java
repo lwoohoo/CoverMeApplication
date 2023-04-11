@@ -20,14 +20,18 @@ public class Team
   @Id
   @GeneratedValue
   private int teamID;
+  private String name;
+  private String description;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Team(int aTeamID)
+  public Team() {}
+
+  public Team(String name)
   {
-    teamID = aTeamID;
+    this.name = name;
   }
 
   //------------------------
@@ -55,5 +59,21 @@ public class Team
   {
     return super.toString() + "["+
             "teamID" + ":" + getTeamID()+ "]";
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

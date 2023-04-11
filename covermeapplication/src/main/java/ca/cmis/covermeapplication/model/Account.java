@@ -5,7 +5,9 @@ package ca.cmis.covermeapplication.model;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -33,7 +35,8 @@ public class Account
   private boolean isAdmin;
 
   //Account Associations
-  @ManyToMany
+  //will create compund pk for account roles
+  @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
   private List<Role> roles;
   @ManyToOne
   private Team team;

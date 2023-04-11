@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import ca.cmis.covermeapplication.model.Account;
-import ca.cmis.covermeapplication.model.Role;
-import ca.cmis.covermeapplication.model.Shift;
+import ca.cmis.covermeapplication.model.Team;
 
 public interface AccountRepository extends CrudRepository<Account, Integer>{
     
@@ -19,16 +18,17 @@ public interface AccountRepository extends CrudRepository<Account, Integer>{
     //find all
     List<Account> findAll();
 
-    // //find all of a role
-    // List<Account> findAccountByRole(Role role);
+    //find with name
+    List<Account> findAccountByName(String name);
 
-    // //find with name
-    // List<Account> findAccountByName(String name);
+    //Associated queries
 
-    // //find by group
-    // List<Account> findAccountByGroup(Group group);
+    //find all of a role
+    List<Account> findAccountByRoles_RoleID(int roleID);
 
-    // //find by shift
-    // Account findAccountByShift(Shift shift);
+    //find by group
+    List<Account> findAccountByTeam(Team team);
+
+
 
 }

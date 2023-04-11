@@ -39,12 +39,13 @@ public abstract class Event
   // CONSTRUCTOR
   //------------------------
 
-  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar)
+  public Event() {}
+
+  public Event(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, Account aAccount, Calendar aCalendar)
   {
     date = aDate;
     startTime = aStartTime;
     endTime = aEndTime;
-    eventID = aEventID;
     if (!setAccount(aAccount))
     {
       throw new RuntimeException("Unable to create Event due to aAccount. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");

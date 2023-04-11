@@ -2,6 +2,7 @@ package ca.cmis.covermeapplication.model;
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.32.1.6535.66c005ced modeling language!*/
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,21 +25,22 @@ public class Role
   private int roleID;
 
   //Role Associations
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   private Team team;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Role(String aName, int aRoleID, Team aTeam)
+  public Role() {}
+
+  public Role(String aName)
   {
     name = aName;
-    roleID = aRoleID;
-    if (!setTeam(aTeam))
-    {
-      throw new RuntimeException("Unable to create Role due to aTeam. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
+    // if (!setTeam(aTeam))
+    // {
+    //   throw new RuntimeException("Unable to create Role due to aTeam. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    // }
   }
 
   //------------------------

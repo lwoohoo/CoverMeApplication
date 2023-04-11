@@ -32,7 +32,7 @@ public class Availability extends Event
 
   public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, AvailabilityStatus aAvailabilityStatus)
   {
-    super(aDate, aStartTime, aEndTime, aEventID, aAccount, aCalendar);
+    super(aDate, aStartTime, aEndTime, aAccount, aCalendar);
     availabilityStatus = aAvailabilityStatus;
   }
 

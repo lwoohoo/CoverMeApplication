@@ -26,7 +26,7 @@ public class CalendarEvent extends Event
 
   public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, String aDescription)
   {
-    super(aDate, aStartTime, aEndTime, aEventID, aAccount, aCalendar);
+    super(aDate, aStartTime, aEndTime, aAccount, aCalendar);
     description = aDescription;
   }
 
