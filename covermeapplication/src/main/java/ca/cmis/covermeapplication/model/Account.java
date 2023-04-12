@@ -12,6 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 // line 2 "model.ump"
 // line 111 "model.ump"
@@ -39,7 +43,11 @@ public class Account
   @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
   private List<Role> roles;
   @ManyToOne
+  @NotFound(action = NotFoundAction.IGNORE)
   private Team team;
+  @OneToOne
+  @NotFound(action = NotFoundAction.IGNORE)
+  private Calendar calendar;
 
   //------------------------
   // CONSTRUCTOR
@@ -266,6 +274,13 @@ public class Account
     team = null;
   }
 
+  public Calendar getCalendar() {
+    return this.calendar;
+  }
+
+  public void setCalendar(Calendar calendar) {
+    this.calendar = calendar;
+  }
 
   public String toString()
   {

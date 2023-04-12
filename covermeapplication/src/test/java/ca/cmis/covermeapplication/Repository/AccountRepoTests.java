@@ -35,6 +35,7 @@ public class AccountRepoTests {
     public void clear() {
         accountRepository.deleteAll();
         roleRepository.deleteAll();
+        teamRepository.deleteAll();
     }
 
     @Test

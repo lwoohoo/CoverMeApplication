@@ -5,6 +5,10 @@ package ca.cmis.covermeapplication.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 // line 50 "model.ump"
 // line 177 "model.ump"
@@ -22,6 +26,11 @@ public class Team
   private int teamID;
   private String name;
   private String description;
+
+  //Team Associations
+  @OneToOne
+  @NotFound(action = NotFoundAction.IGNORE)
+  private Calendar calendar;
 
   //------------------------
   // CONSTRUCTOR
@@ -75,5 +84,13 @@ public class Team
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public Calendar getCalendar() {
+    return this.calendar;
+  }
+
+  public void setCalendar(Calendar calendar) {
+    this.calendar = calendar;
   }
 }

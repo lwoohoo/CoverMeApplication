@@ -30,7 +30,9 @@ public class Availability extends Event
   // CONSTRUCTOR
   //------------------------
 
-  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, AvailabilityStatus aAvailabilityStatus)
+  public Availability(){}
+
+  public Availability(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, Account aAccount, Calendar aCalendar, AvailabilityStatus aAvailabilityStatus)
   {
     super(aDate, aStartTime, aEndTime, aAccount, aCalendar);
     availabilityStatus = aAvailabilityStatus;
