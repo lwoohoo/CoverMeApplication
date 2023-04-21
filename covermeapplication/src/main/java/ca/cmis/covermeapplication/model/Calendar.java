@@ -5,7 +5,6 @@ package ca.cmis.covermeapplication.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 // line 43 "model.ump"
 // line 136 "model.ump"

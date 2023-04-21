@@ -10,8 +10,8 @@ import ca.cmis.covermeapplication.model.CalendarEvent;
 public interface CalendarEventRepository extends CrudRepository<CalendarEvent, Integer>{
     
     //pk
-    CalendarEvent findAvailabilityByEventID(int eventID);
+    CalendarEvent findCalendarEventByEventID(int eventID);
 
     //date
-    List<CalendarEvent> findAvailabilityByDate(LocalDate date);
+    List<CalendarEvent> findCalendarEventByDate(LocalDate date);
 }

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ca.cmis.covermeapplication.model.Account;
 import ca.cmis.covermeapplication.model.TimelinePost;
 
 public interface TimelinePostRepository extends CrudRepository<TimelinePost, Integer>{

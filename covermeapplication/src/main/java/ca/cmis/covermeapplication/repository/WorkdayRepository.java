@@ -1,12 +1,10 @@
 package ca.cmis.covermeapplication.repository;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
 import ca.cmis.covermeapplication.model.Workday;
-import ca.cmis.covermeapplication.model.Workweek;
 
 public interface WorkdayRepository extends CrudRepository<Workday, Integer>{
     

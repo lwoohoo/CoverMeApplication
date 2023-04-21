@@ -3,7 +3,6 @@ package ca.cmis.covermeapplication.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import ca.cmis.covermeapplication.model.Shift;
-import ca.cmis.covermeapplication.model.Workday;
 
 public interface ShiftRepository extends CrudRepository<Shift, Integer>{
     
