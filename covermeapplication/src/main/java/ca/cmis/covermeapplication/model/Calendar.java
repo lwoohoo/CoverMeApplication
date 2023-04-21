@@ -5,6 +5,7 @@ package ca.cmis.covermeapplication.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 // line 43 "model.ump"
 // line 136 "model.ump"
@@ -20,6 +21,12 @@ public class Calendar
   @Id
   @GeneratedValue
   private int calendarID;
+
+  //Calendar Associations
+  @OneToOne
+  private Team team;
+  @OneToOne
+  private Account account;
 
 
   //------------------------
@@ -45,6 +52,31 @@ public class Calendar
     return calendarID;
   }
 
+  public void setTeam(Team team) {
+    this.team = team;
+  }
+
+  public Team getTeam() {
+    return this.team;
+  }
+
+  public void setAccount(Account account) {
+    this.account = account;
+  }
+
+  public Account geAccount() {
+    return this.account;
+  }
+
+  public boolean hasTeam() {
+    boolean has = team != null;
+    return has;
+  }
+
+  public boolean hasAccount() {
+    boolean has = account != null;
+    return has;
+  }
 
   public String toString()
   {
