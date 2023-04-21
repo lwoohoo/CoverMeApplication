@@ -22,7 +22,7 @@ import ca.cmis.covermeapplication.repository.AvailabilityRepository;
 import ca.cmis.covermeapplication.repository.CalendarRepository;
 
 @SpringBootTest
-public class AvailabilityRepositoryTests {
+public class AvailabilityRepoTests {
 
     @Autowired
     private AvailabilityRepository availabilityRepository;
