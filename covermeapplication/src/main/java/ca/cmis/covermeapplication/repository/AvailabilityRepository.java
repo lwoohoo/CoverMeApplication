@@ -5,8 +5,9 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-
+import ca.cmis.covermeapplication.model.Account;
 import ca.cmis.covermeapplication.model.Availability;
+import ca.cmis.covermeapplication.model.Calendar;
 import ca.cmis.covermeapplication.model.Availability.AvailabilityStatus;;
 
 public interface AvailabilityRepository extends CrudRepository<Availability, Integer>{
@@ -19,4 +20,8 @@ public interface AvailabilityRepository extends CrudRepository<Availability, Int
 
     //find by status
     List<Availability> findAvailabilityByAvailabilityStatus(AvailabilityStatus availabilityStatus);
+
+    List<Availability> findAvailabilityByAccount(Account account);
+
+    List<Availability> findAvailabilityByCalendar(Calendar calendar);
 }

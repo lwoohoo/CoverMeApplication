@@ -24,7 +24,7 @@ public class CalendarEvent extends Event
   // CONSTRUCTOR
   //------------------------
 
-  public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, int aEventID, Account aAccount, Calendar aCalendar, String aDescription)
+  public CalendarEvent(LocalDate aDate, LocalTime aStartTime, LocalTime aEndTime, Account aAccount, Calendar aCalendar, String aDescription)
   {
     super(aDate, aStartTime, aEndTime, aAccount, aCalendar);
     description = aDescription;
