@@ -33,10 +33,11 @@ public class Workweek
   // CONSTRUCTOR
   //------------------------
 
-  public Workweek(LocalDate aStartDate, int aWorkweekID, Team aTeam)
+  public Workweek(){}
+
+  public Workweek(LocalDate aStartDate, Team aTeam)
   {
     startDate = aStartDate;
-    workweekID = aWorkweekID;
     if (!setTeam(aTeam))
     {
       throw new RuntimeException("Unable to create Workweek due to aTeam. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");

@@ -33,10 +33,11 @@ public class Workday
   // CONSTRUCTOR
   //------------------------
 
-  public Workday(LocalDate aDate, int aWorkdayID, Workweek aWorkweek)
+  public Workday(){}
+
+  public Workday(LocalDate aDate, Workweek aWorkweek)
   {
     date = aDate;
-    workdayID = aWorkdayID;
     if (!setWorkweek(aWorkweek))
     {
       throw new RuntimeException("Unable to create Workday due to aWorkweek. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");

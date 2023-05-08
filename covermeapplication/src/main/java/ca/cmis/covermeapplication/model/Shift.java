@@ -38,11 +38,12 @@ public class Shift
   // CONSTRUCTOR
   //------------------------
 
-  public Shift(LocalTime aStartTime, LocalTime aEndTime, int aShiftID, Workday aWorkday, Account aAccount)
+  public Shift(){}
+
+  public Shift(LocalTime aStartTime, LocalTime aEndTime, Workday aWorkday, Account aAccount)
   {
     startTime = aStartTime;
     endTime = aEndTime;
-    shiftID = aShiftID;
     if (!setWorkday(aWorkday))
     {
       throw new RuntimeException("Unable to create Shift due to aWorkday. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");

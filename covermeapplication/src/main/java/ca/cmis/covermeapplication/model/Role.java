@@ -25,7 +25,7 @@ public class Role
   private int roleID;
 
   //Role Associations
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   private Team team;
 
   //------------------------
